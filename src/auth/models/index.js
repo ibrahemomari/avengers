@@ -5,7 +5,17 @@ const { Sequelize, DataTypes } = require("sequelize");
 const DATABASE_URL = process.env.DATABASE_URL;
 const avengers=require('./avengers');
 const Collection=require('./dataCollection');
-const sequelize = new Sequelize(DATABASE_URL,{});
+
+let sequelizeOptions = {
+      dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          }
+        }
+  };
+
+const sequelize = new Sequelize(DATABASE_URL,sequelizeOptions);
 
 const userModel=user(sequelize,DataTypes);
 const avengersModel=avengers(sequelize,DataTypes);

@@ -25,7 +25,7 @@ const userModel = (sequelize, DataTypes) => {
       get() {
         const acl = {
           user: ['read'],
-          admin: ['read', 'create', 'update', 'delete']
+          admin: ['read', 'create', 'update', 'delete','readall']
         };
         return acl[this.role];
       }
